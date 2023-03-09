@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Eng-Mahmoud Ahmed\\Desktop\\DemoMVC\\Day1\\Day1.csproj": {}
+    "C:\\Users\\Eng-Mahmoud Ahmed\\Desktop\\DemoMVC\\MVC\\Day1\\Day1.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Eng-Mahmoud Ahmed\\Desktop\\DemoMVC\\Day1\\Day1.csproj": {
+    "C:\\Users\\Eng-Mahmoud Ahmed\\Desktop\\DemoMVC\\MVC\\Day1\\Day1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Eng-Mahmoud Ahmed\\Desktop\\DemoMVC\\Day1\\Day1.csproj",
+        "projectUniqueName": "C:\\Users\\Eng-Mahmoud Ahmed\\Desktop\\DemoMVC\\MVC\\Day1\\Day1.csproj",
         "projectName": "Day1",
-        "projectPath": "C:\\Users\\Eng-Mahmoud Ahmed\\Desktop\\DemoMVC\\Day1\\Day1.csproj",
+        "projectPath": "C:\\Users\\Eng-Mahmoud Ahmed\\Desktop\\DemoMVC\\MVC\\Day1\\Day1.csproj",
         "packagesPath": "C:\\Users\\Eng-Mahmoud Ahmed\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Eng-Mahmoud Ahmed\\Desktop\\DemoMVC\\Day1\\obj\\",
+        "outputPath": "C:\\Users\\Eng-Mahmoud Ahmed\\Desktop\\DemoMVC\\MVC\\Day1\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
