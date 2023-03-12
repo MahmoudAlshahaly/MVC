@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Day2.Models.Instructor>
+
+@{
+    ViewData["Title"] = "GetAllInstructor";
+}
+
+<h1>GetAllInstructor</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.salary)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Department_id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Course_id)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                <img src="~/image/@item.image"  style="width:100px;height:100px;" class="card-img-top" alt="...">
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.salary)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Department_id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Course_id)
+            </td>
+            <td>
+                
+                @Html.ActionLink("GetByIDInstructor", "GetByIDInstructor", new {  id=item.id }) |
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

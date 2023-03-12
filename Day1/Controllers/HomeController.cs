@@ -23,6 +23,9 @@ namespace Day1.Controllers
         }
         public IActionResult GetByID(int id)
         {
+            product p = new product();
+            p.id = 10;
+            p.name = "aa";
             return View("ONEPRODUCT", pro.GetByID(id));
         }
     }
