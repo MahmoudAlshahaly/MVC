@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Day2.CourseResultViewModel>
+
+@{
+    ViewData["Title"] = "ShowCourseResult";
+}
+
+<h1>ShowCourseResult</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr ">
+            <th>
+                @Html.DisplayNameFor(model => model.studentname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.coursename)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.degree)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.mindegree)
+            </th>
+          
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr style="color:@item.color">
+            <td>
+                @Html.DisplayFor(modelItem => item.studentname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.coursename)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.degree)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.mindegree)
+            </td>
+       
+           
+        </tr>
+}
+    </tbody>
+</table>

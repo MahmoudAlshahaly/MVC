@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Day2.Migrations
 {
     [DbContext(typeof(DBHelper))]
-    [Migration("20230312101221_init")]
+    [Migration("20230312184911_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -51,8 +51,8 @@ namespace Day2.Migrations
                     b.Property<int>("mindegree")
                         .HasColumnType("int");
 
-                    b.Property<int>("name")
-                        .HasColumnType("int");
+                    b.Property<string>("name")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("id");
 
@@ -96,8 +96,8 @@ namespace Day2.Migrations
                     b.Property<string>("manager")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("name")
-                        .HasColumnType("int");
+                    b.Property<string>("name")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("id");
 
@@ -110,9 +110,6 @@ namespace Day2.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("Course_id")
-                        .HasColumnType("int");
 
                     b.Property<int>("Department_id")
                         .HasColumnType("int");

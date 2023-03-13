@@ -49,8 +49,8 @@ namespace Day2.Migrations
                     b.Property<int>("mindegree")
                         .HasColumnType("int");
 
-                    b.Property<int>("name")
-                        .HasColumnType("int");
+                    b.Property<string>("name")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("id");
 
@@ -94,8 +94,8 @@ namespace Day2.Migrations
                     b.Property<string>("manager")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("name")
-                        .HasColumnType("int");
+                    b.Property<string>("name")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("id");
 
@@ -108,9 +108,6 @@ namespace Day2.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("Course_id")
-                        .HasColumnType("int");
 
                     b.Property<int>("Department_id")
                         .HasColumnType("int");

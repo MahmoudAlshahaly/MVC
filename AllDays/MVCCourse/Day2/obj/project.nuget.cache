@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "9PsIgRhbVZcoNei7AMJIhQI7Lww3hCm1EUV7pwf1b6BI7OMbRW4J921LaE86PEjTdmcR242OH2y37pqFqK9q1Q==",
+  "dgSpecHash": "nMagFt5jPQZwV3ZmivUvYGR1uitdXmfs3EPUkXnzJXNvhrsDgcDE/VmyXsn6sfnbPuXVT1kxHL4BNP3Rv+OlHQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Eng-Mahmoud Ahmed\\Desktop\\MVCCourse\\Day2\\Day2.csproj",
+  "projectFilePath": "C:\\Users\\Eng-Mahmoud Ahmed\\Desktop\\DemoMVC\\MVC\\AllDays\\MVCCourse\\Day2\\Day2.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Eng-Mahmoud Ahmed\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Eng-Mahmoud Ahmed\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",

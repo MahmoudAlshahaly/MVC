@@ -1,21 +1,22 @@
-﻿using System;
+﻿using Day2.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Day2.Models
+namespace Day2
 {
-    public class Instructor
+    public class InstructorViewModel
     {
         public int id { get; set; }
         public string name { get; set; }
         public string image { get; set; }
         public decimal salary { get; set; }
         public string address { get; set; }
-        [ForeignKey("Department")]
         public int Department_id { get; set; }
-        public virtual Department Department { get; set; }
-        public virtual ICollection<Course> Courses { get; set; }
+        public Department Department { get; set; }
+
+        public List<Department> Departments { get; set; }
     }
 }

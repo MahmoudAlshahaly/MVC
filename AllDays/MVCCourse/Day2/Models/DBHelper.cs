@@ -8,13 +8,9 @@ namespace Day2.Models
 {
     public class DBHelper:DbContext
     {
-        public DBHelper()
+        public DBHelper(DbContextOptions ops):base(ops)
         {
                 
-        }
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=MVCCourse;Integrated Security=True");
         }
         public DbSet<Course> courses { get; set; }
         public DbSet<Department> departments { get; set; }

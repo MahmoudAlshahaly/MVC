@@ -9,7 +9,7 @@ namespace Day2.Models
     public class Course
     {
         public int id { get; set; }
-        public int name { get; set; }
+        public string name { get; set; }
         public int degree { get; set; }
         public int mindegree { get; set; }
         [ForeignKey("Department")]

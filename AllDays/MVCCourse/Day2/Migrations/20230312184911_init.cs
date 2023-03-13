@@ -12,7 +12,7 @@ namespace Day2.Migrations
                 {
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    name = table.Column<string>(type: "int", nullable: false),
+                    name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     manager = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -26,7 +26,7 @@ namespace Day2.Migrations
                 {
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    name = table.Column<string>(type: "int", nullable: false),
+                    name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     degree = table.Column<int>(type: "int", nullable: false),
                     mindegree = table.Column<int>(type: "int", nullable: false),
                     Department_id = table.Column<int>(type: "int", nullable: false)
@@ -52,8 +52,7 @@ namespace Day2.Migrations
                     image = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     salary = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     address = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Department_id = table.Column<int>(type: "int", nullable: false),
-                    Course_id = table.Column<int>(type: "int", nullable: false)
+                    Department_id = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -86,7 +85,7 @@ namespace Day2.Migrations
                         column: x => x.Department_id,
                         principalTable: "departments",
                         principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(

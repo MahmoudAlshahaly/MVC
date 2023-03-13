@@ -1,0 +1,36 @@
+﻿@model Day2.CourseResultViewModel
+
+@{
+    ViewData["Title"] = "ShowResult";
+}
+
+<h1>ShowResult</h1>
+
+<div>
+    <h4>CourseResultViewModel</h4>
+    <hr />
+    <dl class="row" style="color:@Model.color">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.studentname)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.studentname)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.coursename)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.coursename)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.degree)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.degree)
+        </dd>
+       
+    </dl>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

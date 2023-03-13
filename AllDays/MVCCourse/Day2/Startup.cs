@@ -4,6 +4,7 @@ using Day2.repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -26,9 +27,10 @@ namespace Day2
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<DBHelper>(op => op.UseSqlServer(Configuration.GetConnectionString("connetion")));
             services.AddControllersWithViews();
-            services.AddSingleton<DBHelper>();
-            services.AddSingleton<IInstructorRepo, InstructorRepo>();
+            services.AddScoped( typeof(IGenericRepo<>) , typeof(GenericRepo<>) );
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
