@@ -29,6 +29,7 @@ namespace Day2
         {
             services.AddDbContext<DBHelper>(op => op.UseSqlServer(Configuration.GetConnectionString("connetion")));
             services.AddControllersWithViews();
+            services.AddMvc();
             services.AddScoped( typeof(IGenericRepo<>) , typeof(GenericRepo<>) );
 
         }

@@ -1,4 +1,5 @@
 ﻿using Day2.Models;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -16,7 +17,7 @@ namespace Day2
         public string address { get; set; }
         public int Department_id { get; set; }
         public Department Department { get; set; }
-
         public List<Department> Departments { get; set; }
+        public IFormFile file { get; set; }
     }
 }

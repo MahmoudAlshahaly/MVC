@@ -1,5 +1,6 @@
 ﻿using Day2.interfaces;
 using Day2.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,7 +34,7 @@ namespace Day2.repository
         {
             return db.Set<T>().AsQueryable();
         }
-        public virtual T GetByID(int id)
+        public  T GetByID(int id)
         {
             return db.Set<T>().Find(id);
         }
@@ -58,7 +59,10 @@ namespace Day2.repository
 
         public virtual T Update(T entity)
         {
-            db.Set<T>().Update(entity);
+            
+            db.Set<T>().Attach(entity);
+            db.Entry(entity).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+
             db.SaveChanges();
 
             return entity;
