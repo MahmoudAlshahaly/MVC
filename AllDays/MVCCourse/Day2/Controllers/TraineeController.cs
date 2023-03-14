@@ -27,27 +27,30 @@ namespace Day2.Controllers
         }
         public IActionResult ShowResult(int student_id,int course_id)
         {
-           var student= traineeRepo.GetByID(student_id);
            var course = courseRepo.GetByID(course_id);
-           var courseresult = courseResultRepo.GetAll().Where(a=>a.Course_id==course_id && a.Trainee_id==student_id).FirstOrDefault();
-          
-            var model = new CourseResultViewModel 
-            {
-                studentname=student.name,
-                coursename=course.name,
-                degree=courseresult.degree,
-                color="red"
-            };
+            var courseresult = courseResultRepo.GetAll()
+                .Where(a => a.Course_id == course_id && a.Trainee_id == student_id)
+                .Include(s => s.Trainee).Include(c => c.Course).Select(x =>
+                                new CourseResultViewModel
+                                {
+                                course_id = x.Course_id,
+                                studentname = x.Trainee.name,
+                                coursename = x.Course.name,
+                                degree = x.degree,
+                                color = "red"
+
+                                }).FirstOrDefault();
             if (courseresult.degree >= course.mindegree)
             {
-                model.color = "green";
+                courseresult.color = "green";
             }
-            return View(model);
+            return View(courseresult);
         
         }
         public IActionResult ShowCourseResult()
         { 
-          var courseresult = courseResultRepo.GetAll().Include(s=>s.Trainee).Include(c=>c.Course).Select(x =>
+          var courseresult = courseResultRepo.GetAll().Include(s=>s.Trainee).
+                Include(c=>c.Course).Select(x =>
             new CourseResultViewModel
           {
                 course_id=x.Course_id,
@@ -63,7 +66,6 @@ namespace Day2.Controllers
                 if (courseresult[i].degree >= course.mindegree)
                 {
                     courseresult[i].color = "green";
-
                 }
                 else
                 {
