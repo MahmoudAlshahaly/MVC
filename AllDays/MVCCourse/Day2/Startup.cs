@@ -1,4 +1,5 @@
 using Day2.interfaces;
+using Day2.Mapping;
 using Day2.Models;
 using Day2.repository;
 using Microsoft.AspNetCore.Builder;
@@ -29,9 +30,10 @@ namespace Day2
         {
             services.AddDbContext<DBHelper>(op => op.UseSqlServer(Configuration.GetConnectionString("connetion")));
             services.AddControllersWithViews();
-            services.AddMvc();
             services.AddScoped( typeof(IGenericRepo<>) , typeof(GenericRepo<>) );
-
+            services.AddAutoMapper(x => x.AddProfile(new DomainProfile()));
+            services.AddScoped<BL.BLInstructor>();
+            services.AddScoped<BL.BLCourse>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

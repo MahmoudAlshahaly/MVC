@@ -14,86 +14,57 @@ namespace Day2.Controllers
 {
     public class InstructorController : Controller
     {
-        private readonly IGenericRepo<Instructor> instructorRepo;
         private readonly IGenericRepo<Department> departmentRepo;
         private readonly IGenericRepo<Course> courseRepo;
         private readonly IHostingEnvironment hostingEnvironment;
+        private readonly BL.BLInstructor bLInstructor;
 
         public InstructorController(
-            IGenericRepo<Instructor> _instructorRepo,
             IGenericRepo<Department> _departmentRepo,
             IGenericRepo<Course> _courseRepo,
-            IHostingEnvironment hostingEnvironment)
+            IHostingEnvironment hostingEnvironment,
+            BL.BLInstructor _bLInstructor)
         {
-            instructorRepo = _instructorRepo;
             departmentRepo = _departmentRepo;
             courseRepo = _courseRepo;
             this.hostingEnvironment = hostingEnvironment;
+            bLInstructor = _bLInstructor;
         }
         public IActionResult GetAll()
         {
-          var All= instructorRepo.GetAll().Include(x => x.Department).Select(x =>
-          new InstructorViewModel
-          {
-              id = x.id,
-              name = x.name,
-              salary = x.salary,
-              address = x.address,
-              image = x.image,
-              
-              Department = new Department { id = x.Department.id, name = x.Department.name }
-          }).ToList();
-            return View(All);
+            var all2 = bLInstructor.GetAll();
+            return View(all2);
         }
         public IActionResult Details(int id)
         {
+            var s = bLInstructor.GetByID(id);
         
-            return View(model(id));
-        }
-        private InstructorViewModel model(int id)
-        {
-            var instru = instructorRepo.GetByID(id);
-            var model = new InstructorViewModel
-            {
-                id = instru.id,
-                name = instru.name,
-                salary = instru.salary,
-                address = instru.address,
-                image = instru.image,
-                Department = departmentRepo.GetByID(instru.Department_id)
-            };
-            return model;
+            return View(s);
         }
         public IActionResult Delete(int id)
         {
-            return View(model(id));
+            var s = bLInstructor.GetByID(id);
+
+            return View(s);
         }
         [HttpPost]
-        public IActionResult Delete(int id, Instructor instructor)
+        public IActionResult Delete(int id,Instructor instructor)
         {
-            instructorRepo.Delete(id);
+            bLInstructor.Delete(id);
             return RedirectToAction(nameof(GetAll));
         }
-        string path;
         public IActionResult Edit(int id)
         {
-            var department = instructorRepo.GetByID(id);
-            path = department.image;
-            var model = new InstructorViewModel
-            {
-                id = department.id,
-                name = department.name,
-                salary = department.salary,
-                address = department.address,
-                image = department.image,
-                Department_id = department.Department_id,
-                Departments = departmentRepo.GetAll().ToList()
-            };
-            return View(model);
+          //ViewData["DropDown"] = departmentRepo.GetAll().Select(a => new {id = a.id , name= a.name}).ToList();
+            ViewData["DropDown"] = departmentRepo.GetAll().ToList();
+            var m2 = bLInstructor.GetByID(id);
+            return View(m2);
         }
         [HttpPost]
         public IActionResult Edit(InstructorViewModel model)
         {
+            var instru = bLInstructor.GetByIDNoTracking(model.id);
+
             string filename = string.Empty;
             if (model.file != null)
             {
@@ -101,26 +72,18 @@ namespace Day2.Controllers
                 filename = model.file.FileName;
                 string fullpath = Path.Combine(uploads, filename);
 
-                string oldfilename = instructorRepo.GetAll().Where(a=>a.id==model.id).AsNoTracking().SingleOrDefault().image;
+                string oldfilename = instru.image;
                 string fulloldpath = Path.Combine(uploads, oldfilename);
+          
                 if (fullpath != oldfilename)
                 {
                     System.IO.File.Delete(fulloldpath);
                     model.file.CopyTo(new FileStream(fullpath, FileMode.Create));
                 }
+                instru.image = filename; 
             }
-            Instructor instru = new Instructor();
-            instru.id = model.id;
-            instru.name = model.name;
-            instru.salary = model.salary;
-            if (model.file != null)
-            {
-                instru.image = filename;
-            }
-            instru.address = model.address;
-            instru.Department = departmentRepo.GetByID(model.Department_id);
 
-            instructorRepo.Update(instru);
+            bLInstructor.Update(instru);
             return RedirectToAction(nameof(GetAll));
         }
         [HttpGet]
@@ -130,6 +93,9 @@ namespace Day2.Controllers
             {
                 Departments = departmentRepo.GetAll().ToList()
             };
+
+            // ViewData["DropDown"] = departmentRepo.GetAll().Select(a => new {id = a.id , name= a.name}).ToList();
+            //ViewData["DropDown"] = departmentRepo.GetAll().ToList();
             return View(model);
         }
         [HttpPost]
@@ -141,16 +107,11 @@ namespace Day2.Controllers
                 string uploads = Path.Combine(hostingEnvironment.WebRootPath, "image");
                 filename = model.file.FileName;
                 string fullpath = Path.Combine(uploads, filename);
+                model.image = filename;
                 model.file.CopyTo(new FileStream(fullpath,FileMode.Create));
             }
-            Instructor instru = new Instructor();
-            instru.id = model.id;
-            instru.name = model.name;
-            instru.salary = model.salary;
-            instru.image = filename;
-            instru.address = model.address;
-            instru.Department = departmentRepo.GetByID(model.Department_id);
-            instructorRepo.Insert(instru);
+
+            bLInstructor.Insert(model);
             return RedirectToAction(nameof(GetAll));
         }
     }

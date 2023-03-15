@@ -1,0 +1,49 @@
+﻿@model Day2.CourseViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>CourseViewModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="name" class="control-label"></label>
+                <input asp-for="name" class="form-control" />
+                <span asp-validation-for="name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="degree" class="control-label"></label>
+                <input asp-for="degree" class="form-control" />
+                <span asp-validation-for="degree" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="mindegree" class="control-label"></label>
+                <input asp-for="mindegree" class="form-control" />
+                <span asp-validation-for="mindegree" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Department_id" class="control-label">Department Name</label>
+                <select asp-for="Department_id" class="form-control"
+                        asp-items="@(new SelectList(Model.Departments,"id","name"))"> </select>
+                <span asp-validation-for="Department_id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
