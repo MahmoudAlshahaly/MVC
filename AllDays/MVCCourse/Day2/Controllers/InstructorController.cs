@@ -17,17 +17,19 @@ namespace Day2.Controllers
         private readonly IGenericRepo<Department> departmentRepo;
         private readonly IGenericRepo<Course> courseRepo;
         private readonly IHostingEnvironment hostingEnvironment;
+        private readonly IWebHostEnvironment webHostEnvironment;
         private readonly BL.BLInstructor bLInstructor;
 
         public InstructorController(
             IGenericRepo<Department> _departmentRepo,
             IGenericRepo<Course> _courseRepo,
-            IHostingEnvironment hostingEnvironment,
-            BL.BLInstructor _bLInstructor)
+            IWebHostEnvironment _webHostEnvironment,
+            BL.BLInstructor _bLInstructor
+            )
         {
             departmentRepo = _departmentRepo;
             courseRepo = _courseRepo;
-            this.hostingEnvironment = hostingEnvironment;
+            webHostEnvironment = _webHostEnvironment;
             bLInstructor = _bLInstructor;
         }
         public IActionResult GetAll()
@@ -104,11 +106,13 @@ namespace Day2.Controllers
             string filename = string.Empty;
             if(model.file !=null)
             {
+               
                 string uploads = Path.Combine(hostingEnvironment.WebRootPath, "image");
                 filename = model.file.FileName;
                 string fullpath = Path.Combine(uploads, filename);
-                model.image = filename;
                 model.file.CopyTo(new FileStream(fullpath,FileMode.Create));
+                model.image = filename;
+
             }
 
             bLInstructor.Insert(model);

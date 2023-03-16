@@ -307,3 +307,4 @@ C:\Users\Eng-Mahmoud Ahmed\Desktop\DemoMVC\MVC\AllDays\MVCCourse\Day2\obj\Debug\
 C:\Users\Eng-Mahmoud Ahmed\Desktop\DemoMVC\MVC\AllDays\MVCCourse\Day2\obj\Debug\net5.0\Razor\Views\Course\Create.cshtml.g.cs
 C:\Users\Eng-Mahmoud Ahmed\Desktop\DemoMVC\MVC\AllDays\MVCCourse\Day2\obj\Debug\net5.0\Razor\Views\Course\Index.cshtml.g.cs
 C:\Users\Eng-Mahmoud Ahmed\Desktop\DemoMVC\MVC\AllDays\MVCCourse\Day2\obj\Debug\net5.0\Razor\Views\Course\Delete.cshtml.g.cs
+C:\Users\Eng-Mahmoud Ahmed\Desktop\DemoMVC\MVC\AllDays\MVCCourse\Day2\obj\Debug\net5.0\Day2.csproj.AssemblyReference.cache

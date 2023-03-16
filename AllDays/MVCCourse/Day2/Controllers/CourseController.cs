@@ -38,9 +38,12 @@ namespace Day2.Controllers
         [HttpPost]
         public IActionResult Create(CourseViewModel model)
         {
-
-            bLCourse.Insert(model);
-            return RedirectToAction(nameof(Index));
+            if (ModelState.IsValid)
+            {
+                bLCourse.Insert(model);
+                return RedirectToAction(nameof(Index));
+            }
+            return View("create");
         }
 
         public IActionResult Delete(int id)
